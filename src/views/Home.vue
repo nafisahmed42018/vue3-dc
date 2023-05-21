@@ -7,7 +7,7 @@
       <button class="btn" @click="increment">+</button>
     </div>
     <div class="edit">
-      <h4>{{inp}}</h4>
+      <h4>{{ inp }}</h4>
       <input v-model="counterData.title" type="text" />
     </div>
   </div>
@@ -56,11 +56,12 @@ export default {
 import { ref, reactive } from 'vue'
 
 // reference
-// const counter = ref(0)
-// const counterTitle = ref('Counter')
+const counter = ref(0)
+const counterTitle = ref('Counter')
 // non-reactive data
-// const inputLabel = 'Edit counter title :'
+const inputLabel = 'Edit counter title :'
 
+// a data type which has a proxy object to track changes of the data
 const counterData = reactive({
   count: 0,
   title: 'Counter'
