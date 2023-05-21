@@ -8,7 +8,8 @@
   </div>
 </template>
 
-<script>
+<!-- Options API -->
+<!-- <script>
 export default {
   data() {
     return {
@@ -24,6 +25,14 @@ export default {
     }
   }
 }
+</script> -->
+<script setup>
+import { ref } from 'vue'
+
+const counter = ref(0)
+
+const increment = () => counter.value++
+const decrement = () => counter.value--
 </script>
 
 <style scoped>
