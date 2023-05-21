@@ -2,14 +2,17 @@
   <div class="home">
     <h3>{{ counterData.title }} :</h3>
     <div>
-      <button class="btn" @click="decrement">-</button>
+      <button class="btn" @click="decrement(2)">-2</button>
+      <button class="btn" @click="decrement(1)">-</button>
       <span class="counter">{{ counterData.count }}</span>
-      <button class="btn" @click="increment">+</button>
+      <button class="btn" @click="increment(1)">+</button>
+      <button class="btn" @click="increment(2, $event)">+2</button>
     </div>
     <div class="edit">
-      <h4>{{ inp }}</h4>
+      <h4>{{ inputLabel }}</h4>
       <input v-model="counterData.title" type="text" />
     </div>
+    <p>The number on the counter is {{ oddOrEven }}</p>
   </div>
 </template>
 
@@ -53,7 +56,7 @@ export default {
 <!-- Composition API v2 -->
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 
 // reference
 const counter = ref(0)
@@ -66,9 +69,31 @@ const counterData = reactive({
   count: 0,
   title: 'Counter'
 })
-console.log(counterData)
-const increment = () => counterData.count++
-const decrement = () => counterData.count--
+const oddOrEven = computed(() => {
+  if (counterData.count === 0) {
+    return 'unchanged'
+  } else if (counterData.count % 2 === 0) {
+    return 'even'
+  } else {
+    return 'odd'
+  }
+})
+
+watch(
+  () => counterData.count,
+  (newValue, oldValue) => {
+    if (newValue > 20) {
+      alert('Counter is greater than 20')
+    }
+  }
+)
+// console.log(oddOrEven)
+
+const increment = (amount, e) => {
+  console.log(e)
+  counterData.count += amount
+}
+const decrement = (amount) => (counterData.count -= amount)
 </script>
 
 <style scoped>
