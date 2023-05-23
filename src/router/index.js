@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
 import PostDetail from '../views/PostDetail.vue'
+import ModalView from '../views/ModalView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,8 +18,17 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/Posts.vue')
+      component: Posts
     },
+    // {
+    //   path: '/posts',
+    //   name: 'posts',
+    //   *******
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/Posts.vue')
+    // },
     {
       path: '/posts/:id',
       name: 'post',
@@ -27,7 +37,7 @@ const router = createRouter({
     {
       path: '/modal',
       name: 'modal',
-      component: () => import('../views/ModalView.vue')
+      component: ModalView
     }
   ]
 })
