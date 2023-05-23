@@ -45,49 +45,10 @@ export default {
 <!-- Composition API v2 -->
 
 <script setup>
-import { ref, reactive, computed, watch, nextTick } from 'vue'
 import { vAutofocus } from '@/directives/vAutofocus'
+import { useCounter } from '../use/useCounter'
 
-// reference
-const counter = ref(0)
-const counterTitle = ref('Counter')
-// non-reactive data
-const inputLabel = 'Edit counter title :'
-
-// a data type which has a proxy object to track changes of the data
-const counterData = reactive({
-  count: 0,
-  title: 'Counter'
-})
-const oddOrEven = computed(() => {
-  if (counterData.count === 0) {
-    return 'unchanged'
-  } else if (counterData.count % 2 === 0) {
-    return 'even'
-  } else {
-    return 'odd'
-  }
-})
-
-watch(
-  () => counterData.count,
-  (newValue, oldValue) => {
-    if (newValue > 20) {
-      alert('Counter is greater than 20')
-    }
-  }
-)
-// console.log(oddOrEven)
-
-const increment = (amount, e) => {
-  console.log(e)
-  counterData.count += amount
-}
-const decrement = async (amount) => {
-  counterData.count -= amount
-  await nextTick()
-  console.log('first')
-}
+const { inputLabel, counterData, oddOrEven, increment, decrement } = useCounter()
 </script>
 
 <style scoped>
