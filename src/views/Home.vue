@@ -45,7 +45,7 @@ export default {
 <!-- Composition API v2 -->
 
 <script setup>
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, reactive, computed, watch, nextTick } from 'vue'
 import { vAutofocus } from '@/directives/vAutofocus'
 
 // reference
@@ -83,7 +83,11 @@ const increment = (amount, e) => {
   console.log(e)
   counterData.count += amount
 }
-const decrement = (amount) => (counterData.count -= amount)
+const decrement = async (amount) => {
+  counterData.count -= amount
+  await nextTick()
+  console.log('first')
+}
 </script>
 
 <style scoped>
