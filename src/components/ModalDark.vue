@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -33,7 +32,8 @@ const handleVisibilty = () => {
 .modal {
   display: flex;
   flex-direction: column;
-  background-color: bisque;
+  background-color: #333333;
+  color: white;
   position: absolute;
   top: 50%;
   left: 50%;
