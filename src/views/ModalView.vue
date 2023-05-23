@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Modal</h1>
     <button @click="toggleModal">Show Modal</button>
-    <Modal v-if="showModal" :title="'Handed Down Title'" @hideModal="toggleModal">
+    <Modal v-model="showModal" :title="'Handed Down Title'">
       <!-- <template #title>New Modal Title</template> -->
       <!-- <template v-slot:title>New Modal Title</template> -->
       <p>
