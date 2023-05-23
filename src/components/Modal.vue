@@ -1,11 +1,13 @@
 <template>
   <Teleport to=".modal-container">
     <div class="modal">
-      <h2><slot name="title" /></h2>
+      <h2>{{ title }}</h2>
       <slot />
       <!-- Doesnt work -->
       <!-- <pre>{{ $slots.title() }}</pre> -->
-      <button>Hide Modal</button>
+      <!-- direct way -->
+      <!-- <button @click="$emit('hideModal')">Hide Modal</button> -->
+      <button @click="handleVisibilty">Hide Modal</button>
     </div>
   </Teleport>
 </template>
@@ -15,6 +17,18 @@
 // const slots = useSlots()
 
 // console.log(slots.title())
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Default Title'
+  }
+})
+
+const emit = defineEmits(['hideModal'])
+
+const handleVisibilty = () => {
+  emit('hideModal')
+}
 </script>
 
 <style scoped>
