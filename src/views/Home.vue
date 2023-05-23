@@ -10,7 +10,7 @@
     </div>
     <div class="edit">
       <h4>{{ inputLabel }}</h4>
-      <input v-model="counterData.title" type="text" />
+      <input v-model="counterData.title" type="text" v-autofocus />
     </div>
     <p>The number on the counter is {{ oddOrEven }}</p>
   </div>
@@ -32,31 +32,21 @@ export default {
       this.counter--
     }
   }
-}
-</script> -->
-
-<!-- Composition API v1 -->
-
-<!-- <script>
-  export default{
-    write everything in setup function
-    setup() {
-      const counter = Vue.ref(0)
-      const increment = () => counter.value++
-      const decrement = () => counter.value--
-      return {
-        counter,
-        increment,
-        decrement
+  directives: {
+    autofocus: {
+      mounted(el) {
+        el.focus()
       }
     }
   }
+}
 </script> -->
 
 <!-- Composition API v2 -->
 
 <script setup>
 import { ref, reactive, computed, watch } from 'vue'
+import { vAutofocus } from '@/directives/vAutofocus'
 
 // reference
 const counter = ref(0)
