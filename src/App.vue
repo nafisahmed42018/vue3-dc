@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
   <nav>
     <RouterLink to="/">Home</RouterLink>
@@ -11,6 +7,18 @@ import { RouterLink, RouterView } from 'vue-router'
 
   <RouterView />
 </template>
+
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+
+import { reactive, provide } from 'vue'
+
+const userData = reactive({
+  name: 'Nafis Ahmed',
+  username: 'hotashmurgi'
+})
+provide('userData', userData)
+</script>
 
 <style scoped>
 @import '@/assets/base.css';

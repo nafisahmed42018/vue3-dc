@@ -4,12 +4,15 @@
       <h2>{{ title }}</h2>
       <slot />
 
+      <p>{{ userData.name }}</p>
       <button @click="handleVisibilty">Hide Modal</button>
     </div>
   </Teleport>
 </template>
 
 <script setup>
+import { inject } from 'vue'
+const userData = inject('userData')
 const props = defineProps({
   modelValue: {
     type: Boolean,
